@@ -1,0 +1,18 @@
+package com.techstreams.springcloudkafkastream.service;
+
+
+import com.techstreams.springcloudkafkastream.model.Greetings;
+import com.techstreams.springcloudkafkastream.stream.GreetingsStreams;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.cloud.stream.annotation.StreamListener;
+import org.springframework.messaging.handler.annotation.Payload;
+import org.springframework.stereotype.Component;
+
+@Component
+@Slf4j
+public class GreetingsListener {
+    @StreamListener(GreetingsStreams.INPUT)
+    public void handleGreetings(@Payload Greetings greetings) {
+        log.info("Received greetings: {}", greetings);
+    }
+}
